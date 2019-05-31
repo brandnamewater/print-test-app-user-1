@@ -1,4 +1,4 @@
-class UserSessionsController < ApplicationController
+class UserSessionsController < ShopifyApp::AuthenticatedController
   def new
   end
 
