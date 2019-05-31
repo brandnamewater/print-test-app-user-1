@@ -61,9 +61,9 @@ Rails.application.routes.draw do
   resources :users
   resources :user_sessions, only: [:new, :create, :destroy]
 
-  get "signup_user", to: "users#new", as: "signup"
-  get "login_user", to: "user_sessions#new", as: "login"
-  get "logout_user" => "user_sessions#destroy", as: "logout"
+  get "signup_user", to: "users#new", as: "signup_user"
+  get "login_user", to: "user_sessions#new", as: "login_user"
+  get "logout_user" => "user_sessions#destroy", as: "logout_user"
   # resources :fulfillments
   #
   # resources :orders
