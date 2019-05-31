@@ -11,15 +11,15 @@ default: &default
 
 development:
   <<: *default
-  database: shopify_db_development
+  database: shopify_db_development-2
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: shopify_db_test
+  database: shopify_db_test-2
 
 production:
   <<: *default
-  database: shopify_db_production
+  database: shopify_db_production-2
