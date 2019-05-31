@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
 
+  get 'user_sessions/new'
+  get 'user_sessions/create'
+  get 'user_sessions/destroy'
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
+  resources :users
   resources :fulfillments
 
   resources :orders
