@@ -1,0 +1,18 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "New Product" });
+    });
+  </script>
+<% end %>
+<script type="text/javascript">
+  ShopifyApp.init({
+    apiKey: "<%= ShopifyApp.configuration.api_key %>",
+    shopOrigin: "<%= "https://#{ @shop_session.url }" if @shop_session %>",
+    debug: <%= Rails.env.development? ? 'true' : 'false' %>,
+    forceRedirect: true
+  });
+</script>
+<h2>Create Product</h2>
+
+<%= render 'form', product: @product %>

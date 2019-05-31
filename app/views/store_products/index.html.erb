@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Store Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @store_products.each do |store_product| %>
+      <tr>
+        <td><%= store_product.id %></td>
+        <td><%= button_to 'Add to cart', line_items_path(store_product_id: store_product.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

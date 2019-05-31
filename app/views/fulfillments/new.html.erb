@@ -1,0 +1,34 @@
+<h1>New Fulfillment</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="center">id</th>
+      <th class="center">Product id</th>
+      <th class="center">Store Order ID</th>
+      <th class="center">Store Product ID</th>
+      <th class="center">Location</th>
+      <th class="center">Tracking #</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |sp| %>
+      <tr>
+        <td class="center"><%= sp.id %></td>
+        <td class="center"><%= sp.shopify_order_id %></td>
+        <td class="center"><%= sp.shopify_product_id %></td>
+        <td class="center"><%= sp.shop_id %></td>
+        <td class="center"><%= sp.location_id %></td>
+        <td>
+          <% sp_order_id = sp.shopify_order_id %>
+          <%= form_for sp do |f| %>
+            <%= f.text_field :tracking_numbers %>
+            <%= f.submit %>
+          <% end %>
+        </td>
+      </tr>
+  </tbody>
+  <% end %>
+</table>

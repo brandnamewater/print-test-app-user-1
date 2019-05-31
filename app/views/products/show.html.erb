@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<%= @product.sku %>
+<br>
+<%= @product.country %>
+<br>
+<%= @product.color %>
+<br>
+<%= @product.size %>
+<br>
+<%= @product.style_id %>
+<br>
+<%= @product.category_id %>
+<br>
+DTG:<%= @product.price %>
+<br>
+EMBROIDERY<%= @product.price_embroidery %>
+<br>
+
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

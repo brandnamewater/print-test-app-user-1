@@ -1,0 +1,14 @@
+<h1>New Store Product</h1>
+
+<%= render 'form', store_product: @store_product %>
+
+<%= @products.each do |product| %>
+<%= product.title %>
+<% end %>
+
+<h1> Associated Store Products </h1>
+<%= @store_products.each do |store_product| %>
+<%= store_product.id %>
+<td><%= link_to 'Destroy', store_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+<% end %>

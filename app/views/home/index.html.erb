@@ -1,0 +1,128 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Home" });
+    });
+  </script>
+<% end %>
+<h2>Products</h2>
+
+<ul>
+  <% @products.each do |product| %>
+    <li><%= link_to product.title, "https://#{@shop_session.url}/admin/products/#{product.id}", target: "_top" %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h2>Webhooks</h2>
+
+<% if @webhooks.present? %>
+  <ul>
+    <% @webhooks.each do |webhook| %>
+      <li><%= webhook.topic %> : <%= webhook.address %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
+<% end %>
+
+<h2>Store Products List</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="center">id</th>
+        <th class="center">Product id</th>
+        <th class="center">Store Product ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @store_products.each do |sp| %>
+        <tr>
+          <td class="center"><%= sp.id %></td>
+          <td class="center"><%= sp.product_id %></td>
+          <td class="center"><%= sp.store_product_id %></td>
+        </tr>
+    </tbody>
+    <% end %>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="center">id</th>
+        <th class="center">Product id</th>
+        <th class="center">Store Order ID</th>
+        <th class="center">Store Product ID</th>
+        <th class="center">Location</th>
+        <th class="center">Store Product ID</th>
+        <th class="center">Tracking #</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |sp| %>
+        <tr>
+          <td class="center"><%= sp.id %></td>
+          <td class="center"><%= sp.shopify_order_id %></td>
+          <td class="center"><%= sp.shopify_product_id %></td>
+          <td class="center"><%= sp.shop_id %></td>
+          <td class="center"><%= sp.location_id %></td>
+          <td class="center"><%= sp.store_product_id %></td>
+
+          <td>
+            <% @fulfillment.order_id = sp.shopify_order_id %>
+            <%= form_for sp.shopify_order_id do |f| %>
+              <%= f.hidden_field location_id: sp.location_id %>
+              <%= f.hidden_field line_items: sp.shopify_product_id %>
+              <%= f.text_field :tracking_numbers %>
+              <%= f.submit %>
+            <% end %>
+          </td>
+          <td>
+            <%= button_to 'delete', sp, method: :delete, data: { confirm: "Are you sure? " }, class: "button is-danger" %>
+          </td>
+
+
+        </tr>
+    </tbody>
+    <% end %>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="center">id</th>
+        <th class="center">Sgop domain</th>
+        <th class="center">shop toke</th>
+        <th class="center">Tracking Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shops.each do |shop| %>
+        <tr>
+          <td class="center"><%= shop.id %></td>
+          <td class="center"><%= shop.shopify_domain %></td>
+          <td class="center"><%= shop.shopify_token %></td>
+        </tr>
+    </tbody>
+    <% end %>
+  </table>
+
+
+
+<%= link_to "NP Products", new_product_path %>
+
+<%= link_to "SP Products", new_store_product_path %>
+
+<%= link_to "SP Products Index", store_products_path %>
+
+
+<%= link_to "New Orders", new_order_path %>
+
+
+<%= link_to "Orders", orders_path %>
+
+<%= link_to "Fulfillments", new_fulfillment_path %>
+
+<%= link_to "line", new_line_item_path %>

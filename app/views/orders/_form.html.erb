@@ -1,0 +1,29 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "New Store Product" });
+    });
+  </script>
+<% end %>
+
+<script type="text/javascript">
+  ShopifyApp.init({
+    apiKey: "<%= ShopifyApp.configuration.api_key %>",
+    shopOrigin: "<%= "https://#{ @shop_session.url }" if @shop_session %>",
+    debug: <%= Rails.env.development? ? 'true' : 'false' %>,
+    forceRedirect: true
+  });
+</script>
+Manual Order (Existing Product)
+<%= form_for(@order) do |form| %>
+
+    <%= form.hidden_field :cart_id, value: @cart.id %>
+    <%= form.hidden_field :shopify_order_id, value: "1" %>
+    <%= form.hidden_field :line_items_product_id,
+        @line_item = LineItem.find([@cart.line_items.ids]),
+        value: @line_item.store_product_id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

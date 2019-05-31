@@ -1,0 +1,20 @@
+<div class="columns align-items-center">
+  <div class="column is-1">
+    <%= line_item.quantity %>
+  </div>
+
+  <div class="column is-9">
+    <strong><%= line_item.store_product.id %></strong>
+    <div class="columns align-items-center">
+      <div class="content column is-9">
+        <%= line_item.store_product.id %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="has-text-right">
+  <%= link_to 'Remove Item', line_item, method: :delete, data: { confirm: "Are you sure? " }, class: "button is-small mb4" %>
+</div>
+
+<hr/ >

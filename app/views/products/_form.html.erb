@@ -1,0 +1,36 @@
+  <%= form_with(model: product, local: true) do |form| %>
+    <% if product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+        <ul>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+  <p> No join Table</p>
+    <%= form.collection_select :category_id, @categories, :id, :name %>
+  <br>
+    <%= form.collection_select :style_id, @styles, :id, :name %>
+
+  <br>
+
+    sku<%= form.text_field :sku %>
+
+    <%= form.select :color, [["WHITE"], ["BLACK"], ["BLUE"], ["PINK"]] %>
+
+
+    <%= form.select :size, [["S"], ["M"], ["L"], ["XL"], ["2XL"]] %>
+  <br>
+
+
+    country <%= form.text_field :country %>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>

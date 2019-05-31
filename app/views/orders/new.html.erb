@@ -1,0 +1,32 @@
+<h1>New Order</h1>
+
+<%= render 'form', order: @order %>
+
+<%= link_to 'Back', orders_path %>
+
+
+Manual Order (Existing Product)
+<%= form_for(@order) do |form| %>
+
+
+  <%= form.collection_select :store_product_id, @store_products, :id, :store_product_id %>
+  <%= form.hidden_field :product_type, value: "shopify" %>
+  <%= form.hidden_field :shopify_order_id, value: "1" %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+Manual Order (Create New Order)
+<%= form_for(@order) do |form| %>
+
+
+  <%= form.collection_select :product_id, @products, :id, :sku %>
+  <%= form.hidden_field :product_type, value: "manual" %>
+  <%= form.hidden_field :shopify_order_id, value: "1" %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
