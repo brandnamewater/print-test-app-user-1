@@ -1,17 +1,14 @@
 ShopifyApp.configure do |config|
   config.application_name = "My Shopify App"
-  config.api_key = "7ca9b191100a7c7618a370e86f31e4ff"
-  config.secret = "b5480c0f81a243c526bdb755015beb54"
-  config.scope = "read_orders, write_orders, write_products, read_products, write_fulfillments, read_fulfillments"
+  config.api_key = "4dda779b152f2cd05f75b5f7153bdb5e"
+  config.secret = "<secret>"
+  config.scope = "read_orders, read_products. write_orders, read_orders"
   config.embedded_app = false
   config.after_authenticate_job = false
   config.session_repository = Shop
 
-  # config.root_url = '/'
-
   config.webhooks = [
-    {topic: 'orders/create', address: 'https://polar-shelf-74894.herokuapp.com/webhooks/orders_create', format: 'json'},
-    {topic: 'orders/update', address: 'https://polar-shelf-74894.herokuapp.com/webhooks/orders_update', format: 'json'},
+    {topic: 'orders/create', address: 'https://stark-retreat-95660.herokuapp.com/webhooks/orders_create', format: 'json'},
+    {topic: 'orders/update', address: 'https://stark-retreat-95660.herokuapp.com/webhooks/orders_update', format: 'json'},
   ]
-
 end
