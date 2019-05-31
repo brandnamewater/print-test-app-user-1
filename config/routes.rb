@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
 
 
-  get 'user_sessions/new'
-  get 'user_sessions/create'
-  get 'user_sessions/destroy'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-  resources :users
+
   resources :fulfillments
 
   resources :orders
@@ -53,8 +47,23 @@ Rails.application.routes.draw do
       get 'auth/shopify/callback' => :callback
       get 'logout' => :destroy, :as => :logout
   end
+
+  # get 'user_sessions/new'
+  # get 'user_sessions/create'
+  # get 'user_sessions/destroy'
+  # get 'sessions/new'
+  # get 'sessions/create'
+  # get 'sessions/destroy'
+  # resources :users
+
   root :to => 'home#index'
 
+  resources :users
+  resources :user_sessions, only: [:new, :create, :destroy]
+
+  get "signup_user", to: "users#new", as: "signup"
+  get "login_user", to: "user_sessions#new", as: "login"
+  get "logout_user" => "user_sessions#destroy", as: "logout"
   # resources :fulfillments
   #
   # resources :orders
