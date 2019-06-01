@@ -15,6 +15,8 @@ class UsersController < ShopifyApp::AuthenticatedController
   # GET /users/new
   def new
     @user = User.new
+    @shop = Shop.find_by(params[:shop_id])
+
   end
 
   # GET /users/1/edit
