@@ -12,12 +12,6 @@ Rails.application.routes.draw do
 
   resources :line_items
   resources :carts
-  resources :users
-  resources :user_sessions, only: [:new, :create, :destroy]
-
-  get "signup_user", to: "users#new", as: "signup_user"
-  get "login_user", to: "user_sessions#new", as: "login_user"
-  get "logout_user" => "user_sessions#destroy", as: "logout_user"
 
   # resources :carts do
   #   resources: :orders
@@ -64,7 +58,12 @@ Rails.application.routes.draw do
 
   root :to => 'home#index'
 
+  resources :users
+  resources :user_sessions, only: [:new, :create, :destroy]
 
+  get "signup_user", to: "users#new", as: "signup_user"
+  get "login_user", to: "user_sessions#new", as: "login_user"
+  get "logout_user" => "user_sessions#destroy", as: "logout_user"
   # resources :fulfillments
   #
   # resources :orders
