@@ -25,11 +25,12 @@ class UsersController < ShopifyApp::AuthenticatedController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    shop = Shop.find_by(params[:shop_id])
-    shop.update(user_id: @user.id)
+
 
     respond_to do |format|
       if @user.save
+        shop = Shop.find_by(params[:shop_id])
+        shop.update(user_id: @user.id)
 
         format.html { redirect_to '/', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
