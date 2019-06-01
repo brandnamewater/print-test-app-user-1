@@ -25,7 +25,7 @@ class UsersController < ShopifyApp::AuthenticatedController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    shop = Shop.find_by(shopify_domain: shop_domain)
+    shop = Shop.find_by(params[:shop_id])
     shop.update(user_id: @user.id)
 
     respond_to do |format|
